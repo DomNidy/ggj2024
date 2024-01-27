@@ -24,7 +24,11 @@ public class StealthReveal : MonoBehaviour
         {
             Debug.Log("Alerting enemy manager");
             Debug.Log(other.transform.position);
-            EnemyManager.Instance.AlertEnemiesPlayerDetected(other.transform.position);
+
+            if (PlayerController.Instance.canBeDetected)
+            {
+                EnemyManager.Instance.AlertEnemiesPlayerDetected(other.transform.position);
+            }
         }
     }
 
