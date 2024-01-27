@@ -5,7 +5,6 @@ using UnityEngine;
 public class TutorialTip : MonoBehaviour
 {
     public GameObject tipPrefab;
-    public FadeTip fadeTip;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

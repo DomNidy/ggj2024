@@ -14,43 +14,11 @@ public class PlayerController : MonoBehaviour
     public bool canMove = true;
     private bool _isStealthed = false;
     // If the enemy can be revealed my stealth detectors
-    public bool isStealthed
-    {
-        get
-        {
-            return _isStealthed;
-        }
-        set
-        {
-            Debug.Log("Set with val" + value);
-            // If we're updating our state to stealthed
-            if (value)
-            {
-                Debug.Log("Stealth toggled on");
-                _isStealthed = true;
-                spriteRenderer.color = new Color(255, 255, 255, 0.35f);
-                UIManager.Instance.stealthButton.interactable = false;
-            }
-            else
-            {
-                Debug.Log("Stealth toggled off");
-                _isStealthed = false;
-                spriteRenderer.color = new Color(255, 255, 255, 1f);
-                UIManager.Instance.stealthButton.interactable = true;
-            }
-
-            // Update ui
-            UIManager.Instance.ToggleStealthOverlay();
-        }
-    }
-
-
+    public bool isStealthed;
     public Sprite forwardSprite;
     public Sprite leftSprite;
     public Sprite rightSprite;
     public Sprite backwardSprite;
-
-
 
     private Animator anim;
     private SpriteRenderer spriteRenderer;
@@ -79,7 +47,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        ProcessAbilityInputs();
         FacePlayerSprite();
     }
 
@@ -99,14 +66,6 @@ public class PlayerController : MonoBehaviour
 
         // Direction to move player in
         moveDirection = new Vector2(inputHorizontal, inputVertical);
-    }
-
-    private void ProcessAbilityInputs()
-    {
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            isStealthed = !isStealthed;
-        }
     }
 
     void FacePlayerSprite()
