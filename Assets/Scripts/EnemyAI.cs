@@ -86,26 +86,29 @@ public class EnemyAI : MonoBehaviour
             )
         );
 
-        // Check to see if we've reached the current way point, if we have, increment it 
-        if (Vector2.Distance(waypoints[waypointIndex].position, transform.position) < 0.2)
+        // Check to see if we've reached the current waypoint 
+        if (Vector2.Distance(waypoints[waypointIndex].position, transform.position) < 0.2f)
         {
-            // Are we traversing waypoints in reverse
+            // Increment or decrement waypointIndex based on the traversal direction
             if (reverseOrder)
             {
-                // If we reach the beginning of the waypoint list, begin traversing to the end again
-                if (waypointIndex - 1 < 0)
+                waypointIndex -= 1;
+
+                if (waypointIndex < 0)
                 {
                     reverseOrder = false;
                     waypointIndex = 1;
                 }
-
-                waypointIndex -= 1;
             }
-            if (waypointIndex + 1 < waypoints.Length) waypointIndex += 1;
             else
             {
-                reverseOrder = true;
-                waypointIndex -= 1;
+                waypointIndex += 1;
+
+                if (waypointIndex >= waypoints.Length)
+                {
+                    reverseOrder = true;
+                    waypointIndex -= 1;
+                }
             }
         }
     }

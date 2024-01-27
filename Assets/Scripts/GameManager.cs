@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public void LoseGame()
     {
         UIManager.Instance.ShowLoseGameUI();
-        PlayerController.Instance.isStealthed = false;
+        PlayerController.Instance.isStealthed = true;
         PlayerController.Instance.canMove = false;
     }
 }
