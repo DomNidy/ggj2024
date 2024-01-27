@@ -11,8 +11,35 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public float moveSpeed = 250f;
     public bool canMove = true;
+
+    private bool _isStealthed = false;
     // If the enemy can be revealed my stealth detectors
-    public bool canBeDetected = true;
+    public bool isStealthed
+    {
+        get
+        {
+            return _isStealthed;
+        }
+        set
+        {
+            // If we're updating our state to stealthed
+            if (value)
+            {
+                Debug.Log("Stealth toggled on");
+                _isStealthed = true;
+                spriteRenderer.color = new Color(255, 255, 255, 0.35f);
+                UIManager.Instance.stealthButton.interactable = false;
+            }
+            else
+            {
+                Debug.Log("Stealth toggled off");
+                _isStealthed = false;
+                spriteRenderer.color = new Color(255, 255, 255, 1f);
+                UIManager.Instance.stealthButton.interactable = true;
+            }
+
+        }
+    }
 
 
     public Sprite forwardSprite;
@@ -45,25 +72,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (canMove) Move();
-        else moveDirection = Vector2.zero;
-
-        rb.velocity = moveDirection;
-
         // Update the player sprite to the sprite facing the direction they're moving
         FacePlayerSprite();
-        // Read keypresses for abiltiy inputs
+
         ProcessAbilityInputs();
-        // UpdateAnimValues();
+
+        if (canMove) Move();
+        else moveDirection = Vector2.zero;
+        rb.velocity = moveDirection;
     }
 
 
@@ -86,7 +105,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ToggleStealthAbility();
+            isStealthed = true;
         }
     }
 
@@ -116,15 +135,23 @@ public class PlayerController : MonoBehaviour
 
     public void ToggleStealthAbility()
     {
+        // If not already stealhed
+        if (!isStealthed)
+        {
+            Debug.Log("Stealth toggled on");
+            isStealthed = true;
+            spriteRenderer.color = new Color(255, 255, 255, 0.35f);
+            UIManager.Instance.stealthButton.interactable = false;
+        }
+        else
+        {
+            Debug.Log("Stealth toggled off");
+            isStealthed = false;
+            spriteRenderer.color = new Color(255, 255, 255, 1f);
+            UIManager.Instance.stealthButton.interactable = true;
+        }
 
-        Debug.Log("Stealth toggled");
         // Update ui
         UIManager.Instance.ToggleStealthOverlay();
-        UIManager.Instance.stealthButton.interactable = false;
-
-        // Update player state
-        this.canBeDetected = false;
-        this.moveSpeed = 1 / 2 * moveSpeed;
-        spriteRenderer.color = new Color(0, 0, 0, 0.35f);
     }
 }

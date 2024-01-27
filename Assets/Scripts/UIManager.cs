@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     public Button stealthButton;
     // While stealthed, display this prefab over the ui
     public GameObject stealthUIOverlay;
+    // Instance of the stealth ui overlay (should exist only if we're stealthed)
+    private GameObject _stealthUIOverlayInstace;
 
     public GameObject alertTextPrefab;
     public GameObject uiCanvas;
@@ -38,8 +40,16 @@ public class UIManager : MonoBehaviour
 
     public void ToggleStealthOverlay()
     {
-        Instantiate(stealthUIOverlay);
-
+        if (_stealthUIOverlayInstace)
+        {
+            Debug.Log("Toggled stealth ui off");
+            Destroy(_stealthUIOverlayInstace);
+        }
+        else
+        {
+            Debug.Log("Toggled stealth ui on");
+            _stealthUIOverlayInstace = Instantiate(stealthUIOverlay, uiCanvas.transform);
+        }
     }
 
 }
