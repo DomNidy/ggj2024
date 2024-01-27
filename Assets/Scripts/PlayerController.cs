@@ -1,26 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Attatch to player game object
 public class PlayerController : MonoBehaviour
 {
 
-    private float _moveSpeed = 5f;
-    public float moveSpeed
+    public Rigidbody2D rb;
+    public float moveSpeed = 250f;
+
+    private void Awake()
     {
-        get
-        {
-            return _moveSpeed;
-        }
-        set
-        {
-            Debug.Log("Setting moveSpeed to " + value.ToString());
-            _moveSpeed = value;
-        }
+        rb = GetComponent<Rigidbody2D>();
     }
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -29,15 +22,14 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float inputHorizontal = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
         float inputVertical = Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime;
 
         // Direction to move player in
-        Vector3 moveDirection = new Vector3(inputHorizontal, inputVertical);
+        Vector3 moveDirection = new Vector2(inputHorizontal, inputVertical);
 
-        transform.position += moveDirection;
-
+        rb.velocity = moveDirection;
     }
 }
