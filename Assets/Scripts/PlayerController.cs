@@ -58,8 +58,12 @@ public class PlayerController : MonoBehaviour
         else moveDirection = Vector2.zero;
 
         rb.velocity = moveDirection;
+
+        // Update the player sprite to the sprite facing the direction they're moving
         FacePlayerSprite();
-        UpdateAnimValues();
+        // Read keypresses for abiltiy inputs
+        ProcessAbilityInputs();
+        // UpdateAnimValues();
     }
 
 
@@ -76,6 +80,14 @@ public class PlayerController : MonoBehaviour
 
         // Direction to move player in
         moveDirection = new Vector2(inputHorizontal, inputVertical);
+    }
+
+    private void ProcessAbilityInputs()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ToggleStealthAbility();
+        }
     }
 
     void FacePlayerSprite()
@@ -100,5 +112,19 @@ public class PlayerController : MonoBehaviour
         {
             spriteRenderer.sprite = forwardSprite;
         }
+    }
+
+    public void ToggleStealthAbility()
+    {
+
+        Debug.Log("Stealth toggled");
+        // Update ui
+        UIManager.Instance.ToggleStealthOverlay();
+        UIManager.Instance.stealthButton.interactable = false;
+
+        // Update player state
+        this.canBeDetected = false;
+        this.moveSpeed = 1 / 2 * moveSpeed;
+        spriteRenderer.color = new Color(0, 0, 0, 0.35f);
     }
 }
