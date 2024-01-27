@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
         Instantiate(loseGameUIPrefab, uiCanvas.transform);
     }
 
+
     public void ToggleStealthOverlay()
     {
         if (_stealthUIOverlayInstance)
@@ -53,4 +54,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public GameObject GetUICanvas()
+    {
+        return uiCanvas;
+    }
 }
