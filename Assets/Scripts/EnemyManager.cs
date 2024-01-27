@@ -49,7 +49,6 @@ public class EnemyManager : MonoBehaviour
         {
             foreach (EnemyAI enemy in enemies)
             {
-                Debug.Log("Destroying enemy cause a detection happened");
                 enemy.AlertPlayerDetected(detectionPoint);
             }
 
