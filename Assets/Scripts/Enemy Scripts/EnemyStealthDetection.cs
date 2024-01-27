@@ -25,10 +25,7 @@ public class EnemyStealthDetection : MonoBehaviour
             Debug.Log(other.transform.position);
 
             // If the player is not stealthed, alert enemies
-            if (!PlayerController.Instance.isStealthed)
-            {
-                EnemyManager.Instance.AlertEnemiesPlayerDetected(other.transform.position);
-            }
+            EnemyManager.Instance.AlertEnemiesPlayerDetected(other.transform.position);
         }
     }
 

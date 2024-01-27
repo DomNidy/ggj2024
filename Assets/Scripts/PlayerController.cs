@@ -12,15 +12,16 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public float moveSpeed = 250f;
     public bool canMove = true;
-    private bool _isStealthed = false;
     // If the enemy can be revealed my stealth detectors
     public bool isStealthed;
     public Sprite forwardSprite;
     public Sprite leftSprite;
     public Sprite rightSprite;
     public Sprite backwardSprite;
+    public Sprite bottomLeftSprite;
+    public Sprite bottomRightSprite;
 
-    private Animator anim;
+
     private SpriteRenderer spriteRenderer;
     private float inputHorizontal;
     private float inputVertical;
@@ -30,7 +31,6 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
         transform.position = spawnPoint.position;
 
         if (Instance != null && Instance != this)
@@ -43,7 +43,6 @@ public class PlayerController : MonoBehaviour
             Instance = this;
         }
     }
-
 
     void Update()
     {
@@ -68,18 +67,31 @@ public class PlayerController : MonoBehaviour
         moveDirection = new Vector2(inputHorizontal, inputVertical);
     }
 
+    // Very hacky and bad sprite animation but it works lol
     void FacePlayerSprite()
     {
         if (moveDirection.magnitude <= 0.001f) return;
 
-
-        if (inputHorizontal > 0f)
+        // Apply bottom left ordinal sprite
+        if (inputHorizontal > 0f && inputVertical < 0f)
         {
-            spriteRenderer.sprite = rightSprite;
+            spriteRenderer.sprite = bottomRightSprite;
+            return;
         }
+        // Apply bottom right ordinal sprite
+        if (inputHorizontal < 0f && inputVertical < 0f)
+        {
+            spriteRenderer.sprite = bottomLeftSprite;
+            return;
+        }
+
         else if (inputHorizontal < 0f)
         {
             spriteRenderer.sprite = leftSprite;
+        }
+        else if (inputHorizontal > 0f)
+        {
+            spriteRenderer.sprite = rightSprite;
         }
 
         if (inputVertical > 0f)
