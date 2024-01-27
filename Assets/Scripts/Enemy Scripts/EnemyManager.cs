@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,6 @@ public class EnemyManager : MonoBehaviour
 
     // List of all enemies alive on the current level
     public List<EnemyAI> enemies;
-
 
     // TODO: Mark object as dont destroy on scene change
     private void Awake()
@@ -26,16 +26,11 @@ public class EnemyManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    void Start() { }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() { }
 
-    }
     // Add an enemy to the enemy list
     public void AddEnemy(EnemyAI enemyToAdd)
     {
@@ -51,11 +46,23 @@ public class EnemyManager : MonoBehaviour
             {
                 enemy.AlertPlayerDetected(detectionPoint);
             }
-
         }
         else
         {
             Debug.Log("No enemies to alert");
+        }
+    }
+
+    // Update the detection radius of all enemies
+    // Used when player goes stealth
+    public void SetAllEnemyAlertRadius(float newRadius)
+    {
+        if (enemies.Count >= 1)
+        {
+            foreach (EnemyAI enemy in enemies)
+            {
+                StartCoroutine(enemy.enemyStealthDetection.LerpAlertRadius(newRadius));
+            }
         }
     }
 }

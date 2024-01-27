@@ -8,7 +8,6 @@ public class StealthAbility : Ability
     // The players sprite
     private SpriteRenderer spriteRenderer;
 
-
     // Start is called before the first frame update
     private void Awake()
     {
@@ -30,7 +29,7 @@ public class StealthAbility : Ability
         UIManager.Instance.stealthButton.interactable = false;
         PlayerController.Instance.isStealthed = true;
 
-
+        EnemyManager.Instance.SetAllEnemyAlertRadius(2f);
         UIManager.Instance.ToggleStealthOverlay();
     }
     private void ToggleStealthOff()
@@ -42,6 +41,7 @@ public class StealthAbility : Ability
         UIManager.Instance.stealthButton.interactable = false;
         PlayerController.Instance.isStealthed = false;
 
+        EnemyManager.Instance.SetAllEnemyAlertRadius(10f);
         UIManager.Instance.ToggleStealthOverlay();
     }
 

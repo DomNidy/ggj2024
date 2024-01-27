@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StealthReveal : MonoBehaviour
+public class EnemyStealthDetection : MonoBehaviour
 {
-
     // The radius in which nearby enemy NPCS should be alerted
     public float alertRadius = 5f;
 
@@ -37,5 +36,18 @@ public class StealthReveal : MonoBehaviour
     private void UpdateDetectionRadius()
     {
         transform.localScale = new Vector2(alertRadius, alertRadius);
+    }
+
+    public IEnumerator LerpAlertRadius(float newRadius)
+    {
+        for (
+            float currRadius = alertRadius;
+            alertRadius > newRadius || alertRadius < newRadius;
+            currRadius = Mathf.MoveTowards(alertRadius, newRadius, Time.deltaTime * 30)
+        )
+        {
+            alertRadius = currRadius;
+            yield return null;
+        }
     }
 }
