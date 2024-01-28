@@ -13,6 +13,6 @@ public class BeginGame : MonoBehaviour
 
     private void InitiateGame()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("IntroScene");
     }
 }

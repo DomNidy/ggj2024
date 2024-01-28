@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialTip : MonoBehaviour
 {
@@ -8,7 +9,12 @@ public class TutorialTip : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Instantiate(tipPrefab, UIManager.Instance.GetUICanvas().transform);
-        Destroy(this.gameObject);
+
+        // If the player enters the collider, trigger tutorial
+        if (other.CompareTag("Player"))
+        {
+            Instantiate(tipPrefab, UIManager.Instance.GetUICanvas().transform);
+            Destroy(gameObject);
+        }
     }
 }

@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FadeTip : MonoBehaviour
 {
 
     public TMP_Text[] texts;
-    public bool fadeInComplete = false;
-
+    public RawImage[] images;
+    private bool beganFadeOut = false;
     private void Awake()
     {
         texts = GetComponentsInChildren<TMP_Text>();
@@ -20,47 +21,84 @@ public class FadeTip : MonoBehaviour
         {
             _text.color = new Color(_text.color.r, _text.color.b, _text.color.g, 0);
         }
+
+        foreach (RawImage _rawImage in images)
+        {
+            _rawImage.color = new Color(_rawImage.color.r, _rawImage.color.b, _rawImage.color.g, 0);
+        }
+
+
+        StartCoroutine(FadeTextIn());
     }
 
     private void Update()
     {
-        if (!fadeInComplete) FadeTextIn();
+        if (Input.GetKeyDown(KeyCode.F) && !beganFadeOut)
+        {
+            StopAllCoroutines();
+            StartCoroutine(FadeTextOut());
+        }
     }
 
-    private void FadeTextIn()
+    private IEnumerator FadeTextIn()
     {
-        foreach (TMP_Text _text in texts)
-        {
-            _text.color = new Color(
-                _text.color.r,
-                _text.color.b,
-                _text.color.g,
-                Mathf.Lerp(_text.color.a, 1f, Time.deltaTime / 3)
-            );
 
-            if (_text.color.a >= 0.9)
+        for (float alpha = 0f; alpha < 1; alpha += Time.deltaTime)
+        {
+            foreach (TMP_Text _text in texts)
             {
-                _text.color = new Color(_text.color.r, _text.color.b, _text.color.g, 1);
-                fadeInComplete = true;
+                _text.color = new Color(
+                    _text.color.r,
+                    _text.color.b,
+                    _text.color.g,
+                   alpha
+                );
+
             }
+
+            foreach (RawImage _rawImage in images)
+            {
+                _rawImage.color = new Color(_rawImage.color.r, _rawImage.color.b, _rawImage.color.g, alpha);
+
+            }
+
+            yield return null;
         }
+
+        Debug.Log("Fade complete");
     }
 
-    public void FadeTextOut()
+    public IEnumerator FadeTextOut()
     {
-        Debug.Log("Fade text out");
-        foreach (TMP_Text _text in texts)
+        Debug.Log("Fade text out coroutine started");
+        beganFadeOut = true;
+        for (float alpha = 1f; alpha > 0; alpha -= Time.deltaTime)
         {
-            _text.color = new Color(
-                _text.color.r,
-                _text.color.b,
-                _text.color.g,
-                Mathf.Lerp(_text.color.a, 0f, Time.deltaTime * 2)
-            );
+            foreach (TMP_Text _text in texts)
+            {
+                _text.color = new Color(
+                    _text.color.r,
+                    _text.color.b,
+                    _text.color.g,
+                   alpha
+                );
 
-            gameObject.transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * 3);
+            }
 
-            Debug.Log(_text.color.a + " interpolating");
+            foreach (RawImage _rawImage in images)
+            {
+                _rawImage.color = new Color(_rawImage.color.r, _rawImage.color.b, _rawImage.color.g, alpha);
+
+            }
+
+            // We are scaling the stuff down using the alpha as the y-scale
+            transform.localScale = new Vector3(Mathf.Lerp(transform.localScale.x, 0, Time.deltaTime), alpha, 0);
+
+            yield return null;
         }
+
+        Destroy(this.gameObject);
+        Debug.Log("Fade complete");
     }
+
 }

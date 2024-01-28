@@ -46,5 +46,10 @@ public class EnemyStealthDetection : MonoBehaviour
             alertRadius = currRadius;
             yield return null;
         }
+
+
+        // After we finish lerping alert radius, let the player toggle stealth on/off again
+        PlayerController.Instance.stealthAbility.isReady = true;
+
     }
 }

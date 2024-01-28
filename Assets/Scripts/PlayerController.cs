@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public Sprite topRightSprite;
     public Sprite topLeftSprite;
 
-
+    public StealthAbility stealthAbility;
     private SpriteRenderer spriteRenderer;
     private float inputHorizontal;
     private float inputVertical;
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        stealthAbility = GetComponent<StealthAbility>();
         transform.position = spawnPoint.position;
 
         if (Instance != null && Instance != this)
