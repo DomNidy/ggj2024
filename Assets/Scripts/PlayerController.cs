@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public float moveSpeed = 250f;
     public bool canMove = true;
-    // If the enemy can be revealed my stealth detectors
+
+    // If this is set to false, certain things such as being detected by stealth will not trigger
+    public bool interactsWithEnemies = true;
     public bool isStealthed;
     public Sprite forwardSprite;
     public Sprite leftSprite;

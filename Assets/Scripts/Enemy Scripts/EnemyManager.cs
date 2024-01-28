@@ -40,6 +40,8 @@ public class EnemyManager : MonoBehaviour
     // Alert enemies a player was revealed by stealth
     public void AlertEnemiesPlayerDetected(Vector3 detectionPoint)
     {
+        // Do not alert enemies if interactsWithEnemies is false
+        if (!PlayerController.Instance.interactsWithEnemies) return;
         if (enemies.Count >= 1)
         {
             foreach (EnemyAI enemy in enemies)

@@ -10,8 +10,6 @@ public class EnemyAI : MonoBehaviour
 {
     public string enemyName;
     public float enemyMovespeed = 2f;
-    // When the player is detected, this npc will only be alerted if they're within this distance from the collision point
-    public float maxDetectionDistance = 10f;
     public EnemyStealthDetection enemyStealthDetection;
 
     // The game object which contains enemy waypoints
@@ -65,35 +63,7 @@ public class EnemyAI : MonoBehaviour
     /// </summary>
     public void AlertPlayerDetected(Vector2 detectionPoint)
     {
-        float distanceBetweenDetectionAndPlayer = Vector2.Distance(
-            transform.position,
-            detectionPoint
-        );
-
-        Debug.Log(distanceBetweenDetectionAndPlayer);
-        if (distanceBetweenDetectionAndPlayer <= maxDetectionDistance)
-        {
-            enemyText.text = "!!! (" + distanceBetweenDetectionAndPlayer.ToString() + ")";
-
-            // Lose game
-            GameManager.Instance.LoseGame();
-            return;
-        }
-        else if (distanceBetweenDetectionAndPlayer <= maxDetectionDistance + 2f)
-        {
-            enemyText.text = "!! (" + distanceBetweenDetectionAndPlayer.ToString() + ")";
-            return;
-        }
-        else if (distanceBetweenDetectionAndPlayer <= maxDetectionDistance + 4f)
-        {
-            enemyText.text = "! (" + distanceBetweenDetectionAndPlayer.ToString() + ")";
-            return;
-        }
-        else
-        {
-            enemyText.text = "(" + distanceBetweenDetectionAndPlayer.ToString() + ")";
-            return;
-        }
+        GameManager.Instance.LoseGame();
     }
 
     private void MoveToWaypoint(int _waypointIndex)
