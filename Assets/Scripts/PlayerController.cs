@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public Sprite backwardSprite;
     public Sprite bottomLeftSprite;
     public Sprite bottomRightSprite;
+    public Sprite topRightSprite;
+    public Sprite topLeftSprite;
 
 
     private SpriteRenderer spriteRenderer;
@@ -62,8 +64,8 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        inputHorizontal = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
-        inputVertical = Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime;
+        inputHorizontal = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        inputVertical = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
         // Direction to move player in
         moveDirection = new Vector2(inputHorizontal, inputVertical);
@@ -72,7 +74,7 @@ public class PlayerController : MonoBehaviour
     // Very hacky and bad sprite animation but it works lol
     void FacePlayerSprite()
     {
-        if (moveDirection.magnitude <= 0.001f) return;
+        if (moveDirection.magnitude <= 0.2f) return;
 
         // Apply bottom left ordinal sprite
         if (inputHorizontal > 0f && inputVertical < 0f)
@@ -87,7 +89,20 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        else if (inputHorizontal < 0f)
+        // Apply top left ordinal sprite
+        if (inputHorizontal < 0f && inputVertical > 0f)
+        {
+            spriteRenderer.sprite = topLeftSprite;
+            return;
+        }
+        // Apply top right ordinal sprite
+        if (inputHorizontal > 0f && inputVertical > 0f)
+        {
+            spriteRenderer.sprite = topRightSprite;
+            return;
+        }
+
+        if (inputHorizontal < 0f)
         {
             spriteRenderer.sprite = leftSprite;
         }

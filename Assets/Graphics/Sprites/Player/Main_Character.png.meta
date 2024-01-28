@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: df7dd19e8a2f41843a0c73ed80378a68
+guid: ece92b2bda6a7ff42828caf5f0779cd3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,28 +123,28 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Main Character Ordinal_0
+      name: MC_Ord_TL
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
+        x: 8
+        y: 66
+        width: 19
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c42fcef2e16e18f43bb43f9ac99c9663
-      internalID: -155050679
+      spriteID: 79cb76c4ce968044296f63d7e49ecf09
+      internalID: 273179579
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: M
+      name: MC_T
       rect:
         serializedVersion: 2
         x: 36
@@ -152,41 +152,41 @@ TextureImporter:
         width: 24
         height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4819161e31073374c87c576912502377
-      internalID: 1753546154
+      spriteID: 159cf4c1536b6324ca1a01b2f35df38d
+      internalID: 292235755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Character Ordinal_2
+      name: MC_Ord_TR
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
-        width: 32
-        height: 32
+        x: 69
+        y: 66
+        width: 19
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e29874e713b6cd747b00b98fa54dc6fb
-      internalID: 60375238
+      spriteID: 71caf4abd2c31e741be8db8fca030802
+      internalID: -2139747233
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Character Ordinal_3
+      name: MC_L
       rect:
         serializedVersion: 2
         x: 9
@@ -194,20 +194,20 @@ TextureImporter:
         width: 18
         height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9dc29a90b4e4a3a46ad80a79c515c7db
-      internalID: 2143328204
+      spriteID: 692f001abdd624a4bba888248680d8ee
+      internalID: 1056427034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Character Ordinal_4
+      name: MC_R
       rect:
         serializedVersion: 2
         x: 69
@@ -215,14 +215,14 @@ TextureImporter:
         width: 18
         height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df07df99703a0ec4da2cb6f860296658
-      internalID: 1977859561
+      spriteID: 12c92c08dc2322540be1a5b351018b7e
+      internalID: -1030871931
       vertices: []
       indices: 
       edges: []
@@ -236,20 +236,20 @@ TextureImporter:
         width: 19
         height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccea08e50b223ed4bac9bd6097b9af05
-      internalID: -936654702
+      spriteID: eaaad068506a4d14bbb1770c1191bedd
+      internalID: 2058571021
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Main Character Ordinal_6
+      name: MC_B
       rect:
         serializedVersion: 2
         x: 36
@@ -257,14 +257,14 @@ TextureImporter:
         width: 24
         height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a63e0959e302b4945918fdd7d39cde89
-      internalID: 1727499608
+      spriteID: 911d43e5bc669aa46a510d99c99ad5f4
+      internalID: 1747596876
       vertices: []
       indices: 
       edges: []
@@ -278,14 +278,14 @@ TextureImporter:
         width: 19
         height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d58d616eef7bd8949915b0e96e83a882
-      internalID: -918193668
+      spriteID: 202ce0803a88b1c4aac7fb7a8bca1c3c
+      internalID: -1849434821
       vertices: []
       indices: 
       edges: []
@@ -301,14 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      M: 1753546154
-      MC_Ord_BL: -936654702
-      MC_Ord_BR: -918193668
-      Main Character Ordinal_0: -155050679
-      Main Character Ordinal_2: 60375238
-      Main Character Ordinal_3: 2143328204
-      Main Character Ordinal_4: 1977859561
-      Main Character Ordinal_6: 1727499608
+      MC_B: 1747596876
+      MC_L: 1056427034
+      MC_Ord_BL: 2058571021
+      MC_Ord_BR: -1849434821
+      MC_Ord_TL: 273179579
+      MC_Ord_TR: -2139747233
+      MC_R: -1030871931
+      MC_T: 292235755
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

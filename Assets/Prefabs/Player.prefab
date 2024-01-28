@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 60950677748563437}
   - component: {fileID: 3392169439674649994}
   - component: {fileID: 4715485889923379832}
+  - component: {fileID: 4390992329130649086}
+  - component: {fileID: 7502399155352100609}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -76,13 +78,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0.28763008, b: 1, a: 1}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 464493846, guid: 2a3eb4bac6675dc42b4673dae35a9970, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.24, y: 0.29}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -100,8 +102,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0bcaa3ee75c3044d84dbd03c6fc9573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 0}
   rb: {fileID: 3392169439674649994}
-  moveSpeed: 250
+  moveSpeed: 135
+  canMove: 1
+  interactsWithEnemies: 1
+  isStealthed: 0
+  forwardSprite: {fileID: -96888605, guid: 2a3eb4bac6675dc42b4673dae35a9970, type: 3}
+  leftSprite: {fileID: 464493846, guid: 2a3eb4bac6675dc42b4673dae35a9970, type: 3}
+  rightSprite: {fileID: 171355082, guid: 2a3eb4bac6675dc42b4673dae35a9970, type: 3}
+  backwardSprite: {fileID: -1495409545, guid: 2a3eb4bac6675dc42b4673dae35a9970, type: 3}
+  bottomLeftSprite: {fileID: 2058571021, guid: ece92b2bda6a7ff42828caf5f0779cd3, type: 3}
+  bottomRightSprite: {fileID: -1849434821, guid: ece92b2bda6a7ff42828caf5f0779cd3, type: 3}
+  topRightSprite: {fileID: -2139747233, guid: ece92b2bda6a7ff42828caf5f0779cd3, type: 3}
+  topLeftSprite: {fileID: 273179579, guid: ece92b2bda6a7ff42828caf5f0779cd3, type: 3}
 --- !u!50 &3392169439674649994
 Rigidbody2D:
   serializedVersion: 4
@@ -165,15 +179,49 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 0.5625, y: 0.90625}
+    newSize: {x: 0.24, y: 0.29}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.37, y: 0.86}
   m_EdgeRadius: 0
+--- !u!95 &4390992329130649086
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3323474683936884780}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b541360d49da4bd47ba77e89d3e17c08, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7502399155352100609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3323474683936884780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9780802f55242a49ae904411a919e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityKeybind: 32
 --- !u!1 &5789875009572573497
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,8 +264,8 @@ Camera:
   m_GameObject: {fileID: 5789875009572573497}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -240,9 +288,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 70
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6.57
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
